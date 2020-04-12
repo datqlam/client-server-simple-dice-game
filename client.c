@@ -49,23 +49,24 @@ int main(int argc, char * argv[]) {
   }
 
   while (1) {
-  if (read(server, message, 255) < 0) {
-    fprintf(stderr, "read() error\n");
-    exit(3);
-  }
+    if (read(server, message, 255) < 0) {
+      fprintf(stderr, "read() error\n");
+      exit(3);
+    }
 
-  if (!strcmp(message, "Game over: you won the game") || !strcmp(message, "Game over: you lost the game")) {
-	if (!strcmp(message, "Game over: you won the game"))
-		printf("I won the game\n");
-	else printf("I lost the game\n");
-	//close socket and exit
-	close(server);
-	exit(0);
-  } else {
-        fprintf(stderr, "%s\n", message);
-	dice = playDice();
-   	write(server, &dice, sizeof(dice));
-  } 
-   
+    if (!strcmp(message, "Game over: you won the game") ||
+        !strcmp(message, "Game over: you lost the game")) {
+      if (!strcmp(message, "Game over: you won the game"))
+        printf("I won the game\n");
+      else printf("I lost the game\n");
+      //close socket and exit
+      close(server);
+      exit(0);
+    } else {
+      fprintf(stderr, "%s\n", message);
+      dice = playDice();
+      write(server, & dice, sizeof(dice));
+    }
+
   }
 }
