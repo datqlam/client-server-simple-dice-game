@@ -16,7 +16,7 @@
 #include <fcntl.h>
 #include <sys/signal.h>
 
-#define GAMEPOINT 20
+#define GAMEPOINT 100
 
 void action() {}; //handler function for SIGUSR1 signal.
 void player(char * , int, int * , int);
